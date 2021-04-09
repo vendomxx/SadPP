@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище SadIlvinaDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="IdChildren" />
+    </Key>
+    <Property Name="IdChildren" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="100" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Patronymic" Type="varchar" MaxLength="100" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="ChildrenParent">
+    <Key>
+      <PropertyRef Name="IdChildrenParent" />
+    </Key>
+    <Property Name="IdChildrenParent" Type="int" Nullable="false" />
+    <Property Name="ChildrenId" Type="int" />
+    <Property Name="ParentId" Type="int" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="IdGroup" />
+    </Key>
+    <Property Name="IdGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Information" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="IdParent" />
+    </Key>
+    <Property Name="IdParent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="100" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Patronymic" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Visit">
+    <Key>
+      <PropertyRef Name="IdVisit" />
+    </Key>
+    <Property Name="IdVisit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="IsPresence" Type="bit" />
+    <Property Name="ChildrenId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Children_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="Children" Type="Self.Children" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="IdGroup" />
+      </Principal>
+      <Dependent Role="Children">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChildrenParent_Children">
+    <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+    <End Role="ChildrenParent" Type="Self.ChildrenParent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Children">
+        <PropertyRef Name="IdChildren" />
+      </Principal>
+      <Dependent Role="ChildrenParent">
+        <PropertyRef Name="ChildrenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChildrenParent_Parent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1" />
+    <End Role="ChildrenParent" Type="Self.ChildrenParent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="IdParent" />
+      </Principal>
+      <Dependent Role="ChildrenParent">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Children">
+    <End Role="Children" Type="Self.Children" Multiplicity="0..1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Children">
+        <PropertyRef Name="IdChildren" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="ChildrenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище SadIlvinaDBModelContainer">
+    <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChildrenParent" EntityType="Self.ChildrenParent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Children_Group" Association="Self.FK_Children_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Children" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChildrenParent_Children" Association="Self.FK_ChildrenParent_Children">
+      <End Role="Children" EntitySet="Children" />
+      <End Role="ChildrenParent" EntitySet="ChildrenParent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChildrenParent_Parent" Association="Self.FK_ChildrenParent_Parent">
+      <End Role="Parent" EntitySet="Parent" />
+      <End Role="ChildrenParent" EntitySet="ChildrenParent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Children" Association="Self.FK_Visit_Children">
+      <End Role="Children" EntitySet="Children" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

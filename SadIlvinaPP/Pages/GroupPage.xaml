@@ -1,0 +1,40 @@
+﻿<Page x:Class="SadIlvinaPP.Pages.GroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SadIlvinaPP.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GroupPage">
+
+    <Grid>
+      
+            <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Height="300"
+                    Width="500">
+                <Label>СПИСОК ГРУПП</Label>
+            <ScrollViewer>
+                <ListView x:Name="groupsLV"
+                  Margin="20">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>Название:</Label>
+                                    <Label Content="{Binding Name}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>Информация:</Label>
+                                    <Label Content="{Binding Information}"></Label>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Page>
