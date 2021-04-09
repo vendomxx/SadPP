@@ -11,9 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Height="300"
-                    Width="500">
+                    HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Margin="5">
@@ -24,9 +22,10 @@
                          TextChanged="childrenFilterTB_TextChanged"></TextBox>
             </StackPanel>
             <Label>СПИСОК ДЕТЕЙ</Label>
-            <ScrollViewer>
             <ListView x:Name="childrensLV"
-                  Margin="5">
+                          Height="200"
+                           Margin="10"
+                           Width="500">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -50,7 +49,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

@@ -23,29 +23,25 @@ namespace SadIlvinaPP.Pages
     /// </summary>
     public partial class VisitPage : Page
     {
-        Visit visit= new Visit();
+        Visit visit;
         public VisitPage()
         {
             InitializeComponent();
             childrenCB.ItemsSource = MainWindow.DB.Children.ToList();
+            this.DataContext = visit;
             Filter();
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (visit.IdVisit == 0)
+           visit = visitsLV.SelectedItem as Visit;
+            if (visit == null)
             {
-                MainWindow.DB.Visit.Add(visit);
-                MainWindow.DB.SaveChanges();
+                var x = this.DataContext as Visit;
+                MainWindow.DB.Visit.Add(x);
                 NavigationService.Navigate(new Pages.VisitPage());
             }
-            else
-            {
-
-                this.DataContext = visit;
-                MainWindow.DB.SaveChanges();
-                visit = null;
-            }
+            MainWindow.DB.SaveChanges();
         }
         public void Filter()
         {
@@ -60,6 +56,25 @@ namespace SadIlvinaPP.Pages
         private void childrenFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedVisit = visitsLV.SelectedItem as Visit;
+            if (selectedVisit != null)
+                this.DataContext = selectedVisit;
+            else MessageBox.Show("Выберите элемент для редактирования!");
+        }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedVisit = visitsLV.SelectedItem as Visit;
+            if(selectedVisit!=null)
+            {
+                MainWindow.DB.Visit.Remove(selectedVisit);
+                MainWindow.DB.SaveChanges();
+            }
+          else MessageBox.Show("Выберите элемент для редактирования!");
         }
     }
 }

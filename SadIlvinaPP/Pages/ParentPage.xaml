@@ -11,9 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                     Height="300"
-                     Width="700">
+                    HorizontalAlignment="Center" >
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Margin="5">
@@ -23,30 +21,30 @@
                          Height="25"
                          TextChanged="parentFilterTB_TextChanged"></TextBox>
                 </StackPanel>
-                <Label>СПИСОК РОДИТЕЛЕЙ</Label>
-            <ScrollViewer>
-                <ListView x:Name="parentsLV"
-                  Margin="20">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Фамилия:</Label>
-                                    <Label Content="{Binding Surname}"></Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Имя:</Label>
-                                    <Label Content="{Binding Name}"></Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Отчество:</Label>
-                                    <Label Content="{Binding Patronymic}"></Label>
-                                </StackPanel>
+            <Label>СПИСОК РОДИТЕЛЕЙ</Label>
+            <ListView x:Name="parentsLV"
+                           Height="200"
+                           Width="500"
+                          Margin="20">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Фамилия:</Label>
+                                <Label Content="{Binding Surname}"></Label>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Имя:</Label>
+                                <Label Content="{Binding Name}"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Отчество:</Label>
+                                <Label Content="{Binding Patronymic}"></Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

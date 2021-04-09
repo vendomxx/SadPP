@@ -41,8 +41,9 @@
         </StackPanel>
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
-                     Height="300"
-                     Width="500">
+                     Height="350"
+                     Width="500"
+                    VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Margin="5">
@@ -52,32 +53,45 @@
                          Height="25"
                          TextChanged="childrenFilter_TextChanged"></TextBox>
             </StackPanel>
-            <Label Margin="5">СПИСОК ПОСЕЩЕНИЙ: </Label>
-            <ScrollViewer>
-                <ListView x:Name="visitsLV"
-                  Margin="10">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Дата:</Label>
-                                    <Label Content="{Binding Date}"></Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>ФИО ребенка:</Label>
-                                    <Label Content="{Binding Children.Surname}"></Label>
-                                    <Label Content="{Binding Children.Name}"></Label>
-                                    <Label Content="{Binding Children.Patronymic}"></Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Присутсвие:</Label>
-                                    <Label Content="{Binding IsPresence}"></Label>
-                                </StackPanel>
+            <Label Margin="5">СПИСОК ПОСЕЩЕНИЙ:</Label>
+            <ListView x:Name="visitsLV"
+                       Height="200"
+                       Margin="10"
+                       Width="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Дата:</Label>
+                                <Label Content="{Binding Date}"></Label>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>ФИО ребенка:</Label>
+                                <Label Content="{Binding Children.Surname}"></Label>
+                                <Label Content="{Binding Children.Name}"></Label>
+                                <Label Content="{Binding Children.Patronymic}"></Label>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Присутсвие:</Label>
+                                <Label Content="{Binding IsPresence}"></Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button x:Name="editBtn"
+                        Click="editBtn_Click"
+                        Width="150"
+                        Height="25"
+                        Margin="5">Изменить</Button>
+                <Button x:Name="removeBtn"
+                        Click="removeBtn_Click"
+                        Width="150"
+                        Height="25"
+                        Margin="5">Удалить</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

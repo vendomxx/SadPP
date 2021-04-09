@@ -12,29 +12,27 @@
       
             <StackPanel Orientation="Vertical"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Height="300"
-                    Width="500">
-                <Label>СПИСОК ГРУПП</Label>
-            <ScrollViewer>
-                <ListView x:Name="groupsLV"
-                  Margin="20">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Название:</Label>
-                                    <Label Content="{Binding Name}"></Label>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Информация:</Label>
-                                    <Label Content="{Binding Information}"></Label>
-                                </StackPanel>
+                    HorizontalAlignment="Center">
+            <Label>СПИСОК ГРУПП</Label>
+            <ListView x:Name="groupsLV" 
+                Height="200"
+                Margin="10"
+                Width="500">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Название:</Label>
+                                <Label Content="{Binding Name}"></Label>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Информация:</Label>
+                                <Label Content="{Binding Information}"></Label>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>
